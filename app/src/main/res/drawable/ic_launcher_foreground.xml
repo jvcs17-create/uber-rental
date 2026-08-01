@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Barras estilo grafico de rentabilidad -->
+    <path
+        android:fillColor="#25B14D"
+        android:pathData="M34,66 h10 v18 h-10 z" />
+    <path
+        android:fillColor="#3FD16A"
+        android:pathData="M50,54 h10 v30 h-10 z" />
+    <path
+        android:fillColor="#8CF0A8"
+        android:pathData="M66,42 h10 v42 h-10 z" />
+    <!-- Flecha ascendente -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:pathData="M32,52 L46,44 L58,50 L74,32" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M74,32 l-9,1 l6,6 z" />
+</vector>

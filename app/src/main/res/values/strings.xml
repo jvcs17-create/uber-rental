@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Uber Rental Analyzer</string>
+    <string name="subtitle">Analiza en tiempo real la rentabilidad de cada servicio</string>
+
+    <string name="accessibility_label">Uber Rental Analyzer</string>
+    <string name="accessibility_description">Lee la oferta que aparece en Uber Driver para calcular la ganancia por hora y por km. Solo lee la pantalla; no acepta viajes por ti.</string>
+
+    <!-- Umbral -->
+    <string name="label_threshold">Umbral de rentabilidad</string>
+    <string name="help_threshold">Si la ganancia por hora es mayor o igual a este valor, la tarjeta sale VERDE. Si es menor, sale ROJA.</string>
+    <string name="hint_threshold">Ej: 25000</string>
+    <string name="btn_save">Guardar</string>
+
+    <!-- Permisos -->
+    <string name="label_permissions">Permisos necesarios</string>
+    <string name="btn_accessibility">1. Activar accesibilidad</string>
+    <string name="btn_overlay">2. Permitir mostrar encima</string>
+    <string name="status_on">ACTIVO</string>
+    <string name="status_off">INACTIVO</string>
+
+    <!-- Modo aprendizaje -->
+    <string name="label_learn">Modo aprendizaje</string>
+    <string name="help_learn">Muestra el texto crudo que la app lee de Uber. Úsalo si los números salen mal, para ajustar la lectura.</string>
+
+    <!-- Prueba -->
+    <string name="btn_test">Probar tarjeta de ejemplo</string>
+
+    <!-- Aviso -->
+    <string name="disclaimer">Aviso: esta app solo LEE la pantalla de Uber Driver, no acepta viajes por ti. Automatizar sobre Uber va contra sus términos y podría afectar tu cuenta. Úsala bajo tu propio criterio. Los cálculos son estimados según lo que muestra Uber.</string>
+
+    <!-- Overlay -->
+    <string name="overlay_take">✔ TOMAR</string>
+    <string name="overlay_skip">✘ NO CONVIENE</string>
+    <string name="overlay_per_hour">%1$s /hora</string>
+    <string name="overlay_per_km">%1$s /km</string>
+    <string name="overlay_detail">Tarifa %1$s · %2$s · %3$s</string>
+    <string name="overlay_hint">Toca para cerrar · arrastra para mover</string>
+    <string name="overlay_learn_title">Texto leído (modo aprendizaje)</string>
+
+    <!-- Toasts -->
+    <string name="toast_invalid_threshold">Ingresa un valor válido mayor a 0</string>
+    <string name="toast_threshold_saved">Umbral guardado: %1$s/hora</string>
+    <string name="toast_need_overlay">Primero activa el permiso para mostrar encima</string>
+
+    <!-- Licencia -->
+    <string name="label_license">Licencia de uso</string>
+    <string name="label_device_id">ID de tu equipo (envíaselo al vendedor):</string>
+    <string name="btn_copy_id">Copiar ID</string>
+    <string name="hint_code">Pega aquí tu código de activación</string>
+    <string name="btn_paste">Pegar</string>
+    <string name="btn_activate">Activar</string>
+    <string name="lic_none">Sin licencia. Pega tu código para activar los 30 días.</string>
+    <string name="lic_active">Licencia ACTIVA · vence %1$s (faltan %2$d días)</string>
+    <string name="lic_expired">Licencia VENCIDA el %1$s. Renueva tu código.</string>
+    <string name="lic_other_device">Este código es de otro teléfono. Pide uno para ESTE equipo.</string>
+    <string name="lic_invalid">Código inválido. Revísalo y vuelve a pegarlo.</string>
+    <string name="lic_clock">Se detectó cambio de fecha en el teléfono. Ajusta la fecha real.</string>
+    <string name="lic_activated_ok">¡Activada! Válida hasta %1$s.</string>
+    <string name="toast_id_copied">ID copiado</string>
+    <string name="toast_paste_empty">No hay nada para pegar</string>
+    <string name="overlay_locked_title">🔒 Licencia inactiva</string>
+    <string name="overlay_locked_sub">Renueva tu código en la app para ver la rentabilidad</string>
+    <string name="lic_trial">🎁 Prueba GRATIS activa · quedan %2$d días (hasta %1$s)</string>
+    <string name="lic_trial_ended">Tu prueba gratis terminó el %1$s. Activa un código para seguir usándola.</string>
+
+    <!-- Mantener activo (keep-alive) -->
+    <string name="label_keepalive">Mantener la app activa</string>
+    <string name="help_keepalive">Para que no se apague sola, quítale la optimización de batería. En Xiaomi/Redmi/POCO, activa además \"Inicio automático\" (Autostart) desde Seguridad → Permisos.</string>
+    <string name="btn_battery">Quitar optimización de batería</string>
+    <string name="status_battery_ok">Batería: sin restricción ✓</string>
+    <string name="status_battery_bad">Batería: optimizada (tócalo)</string>
+    <string name="keepalive_title">Uber Rental activo</string>
+    <string name="keepalive_text">Analizando ofertas de Uber en tiempo real</string>
+</resources>
