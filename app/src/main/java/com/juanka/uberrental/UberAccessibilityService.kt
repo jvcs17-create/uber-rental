@@ -34,7 +34,7 @@ class UberAccessibilityService : AccessibilityService() {
         if (event.packageName?.toString() != UBER_DRIVER_PKG) return
 
         val sb = StringBuilder()
-        collectAllUberText(sb)
+        collectAllUberText(event, sb)
         val text = sb.toString().trim()
         if (text.isEmpty()) return
 
@@ -93,20 +93,33 @@ class UberAccessibilityService : AccessibilityService() {
      * La oferta de viaje aparece en una ventana/overlay aparte, por eso antes
      * no se detectaba (solo leíamos rootInActiveWindow = el menú de inicio).
      */
-    private fun collectAllUberText(sb: StringBuilder) {
+    private fun collectAllUberText(event: AccessibilityEvent, sb: StringBuilder) {
+        // 1) El nodo que disparó el evento: suele estar DENTRO de la oferta.
+        //    Subimos a su raíz y leemos todo ese árbol.
         try {
-            val wins = windows
-            if (wins != null) {
-                for (w in wins) {
-                    val r = try { w.root } catch (e: Exception) { null } ?: continue
-                    if (r.packageName?.toString() == UBER_DRIVER_PKG) collectText(r, sb)
-                }
+            var root: AccessibilityNodeInfo? = event.source
+            if (root != null) {
+                var p = root.parent
+                while (p != null) { root = p; p = root!!.parent }
+                collectText(root, sb)
             }
         } catch (e: Exception) {
-            // en algunos equipos windows puede fallar; caemos al método clásico
         }
-        if (sb.isEmpty()) {
-            rootInActiveWindow?.let { collectText(it, sb) }
+        // 2) Todas las ventanas visibles (menos la nuestra), por si la oferta
+        //    está en una ventana/overlay aparte.
+        try {
+            for (w in (windows ?: emptyList())) {
+                val r = try { w.root } catch (e: Exception) { null } ?: continue
+                if (r.packageName?.toString() == OWN_PKG) continue
+                collectText(r, sb)
+            }
+        } catch (e: Exception) {
+        }
+        // 3) Ventana activa (respaldo).
+        try {
+            val ra = rootInActiveWindow
+            if (ra != null && ra.packageName?.toString() != OWN_PKG) collectText(ra, sb)
+        } catch (e: Exception) {
         }
     }
 
@@ -131,5 +144,6 @@ class UberAccessibilityService : AccessibilityService() {
     companion object {
         private const val TAG = "UberRental"
         private const val UBER_DRIVER_PKG = "com.ubercab.driver"
+        private const val OWN_PKG = "com.juanka.uberrental"
     }
 }
