@@ -33,9 +33,8 @@ class UberAccessibilityService : AccessibilityService() {
         if (event == null) return
         if (event.packageName?.toString() != UBER_DRIVER_PKG) return
 
-        val root = rootInActiveWindow ?: return
         val sb = StringBuilder()
-        collectText(root, sb)
+        collectAllUberText(sb)
         val text = sb.toString().trim()
         if (text.isEmpty()) return
 
@@ -87,6 +86,28 @@ class UberAccessibilityService : AccessibilityService() {
         if (::overlay.isInitialized) overlay.hide()
         KeepAliveService.stop(this)
         return super.onUnbind(intent)
+    }
+
+    /**
+     * Lee el texto de TODAS las ventanas de Uber Driver, no solo la activa.
+     * La oferta de viaje aparece en una ventana/overlay aparte, por eso antes
+     * no se detectaba (solo leíamos rootInActiveWindow = el menú de inicio).
+     */
+    private fun collectAllUberText(sb: StringBuilder) {
+        try {
+            val wins = windows
+            if (wins != null) {
+                for (w in wins) {
+                    val r = try { w.root } catch (e: Exception) { null } ?: continue
+                    if (r.packageName?.toString() == UBER_DRIVER_PKG) collectText(r, sb)
+                }
+            }
+        } catch (e: Exception) {
+            // en algunos equipos windows puede fallar; caemos al método clásico
+        }
+        if (sb.isEmpty()) {
+            rootInActiveWindow?.let { collectText(it, sb) }
+        }
     }
 
     private fun collectText(node: AccessibilityNodeInfo?, sb: StringBuilder) {
